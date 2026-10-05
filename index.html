@@ -1,1 +1,356 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Internet Portals of Meaninglessness</title>
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="The Internet Portals of Meaninglessness">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
+    <style>
+        :root {
+            --color-page: #011724;
+            --color-ink: #adc7a9;
+            --page-padding: clamp(0.75rem, 2vw, 2rem);
+            --gap: clamp(0.75rem, 2vh, 1.5rem);
+            --fade: 3000ms;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        html {
+            background: var(--color-page);
+        }
+
+        body {
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            color: var(--color-ink);
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .page {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--gap);
+            padding: var(--page-padding);
+        }
+
+        .slider {
+            flex: 1 1 auto;
+            min-height: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            container-type: size;
+        }
+
+        .slider-frame {
+            position: relative;
+            width: min(100%, 100cqh);
+            aspect-ratio: 1 / 1;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0;
+            transition: opacity var(--fade) ease-in-out;
+        }
+
+        .slide.is-active {
+            opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .slide {
+                transition: none;
+            }
+        }
+
+        .signup {
+            flex: 0 0 auto;
+            width: min(100%, 28rem);
+        }
+
+        /* Mailchimp overrides */
+        #mc_embed_signup {
+            background: transparent;
+            color: var(--color-ink);
+            font: inherit;
+            width: 100%;
+        }
+
+        #mc_embed_signup form {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #mc_embed_signup #mc_embed_signup_scroll {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #mc_embed_signup h2 {
+            margin: 0 0 0.5rem;
+            font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--color-ink);
+        }
+
+        #mc_embed_signup label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        #mc_embed_signup .mc-field-group {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            min-height: 0;
+        }
+
+        #mc_embed_signup .mc-field-group input {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        #mc_embed_signup .mc-field-group input.email {
+            width: 100%;
+            height: 2.5rem;
+            margin: 0;
+            padding: 0 0.75rem;
+            text-align: center;
+            background: transparent;
+            color: var(--color-ink);
+            border: 1px solid var(--color-ink);
+            border-radius: 0;
+            font: inherit;
+            font-size: 0.95rem;
+        }
+
+        #mc_embed_signup input.email::placeholder {
+            color: var(--color-ink);
+            opacity: 0.6;
+        }
+
+        #mc_embed_signup input.button,
+        #mc_embed_signup .button {
+            display: block;
+            width: 100%;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            margin: 0.5rem 0 0;
+            padding: 0;
+            text-align: center;
+            background: var(--color-ink);
+            color: var(--color-page);
+            border: 0;
+            border-radius: 0;
+            font: inherit;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        #mc_embed_signup input.button:hover,
+        #mc_embed_signup input.button:focus-visible {
+            background: #fff;
+        }
+
+        #mc_embed_signup .optionalParent,
+        #mc_embed_signup .clear.foot {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #mc_embed_signup div#mce-responses {
+            float: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        #mc_embed_signup div.response {
+            margin: 0.5rem 0 0;
+            padding: 0;
+            width: 100%;
+            float: none;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--color-ink);
+        }
+
+        #mc_embed_signup div.mce_inline_error {
+            width: 100%;
+            text-align: center;
+        }
+
+        #mce-error-response {
+            color: #e8a0a0;
+        }
+
+        #mc_embed_signup .helper_text {
+            display: none;
+        }
+
+        #mc_embed_signup input.mce_inline_error {
+            border-color: #e8a0a0;
+        }
+
+        #mc_embed_signup div.mce_inline_error {
+            background: transparent;
+            color: #e8a0a0;
+            margin: 0.25rem 0 0;
+            padding: 0;
+        }
+
+        @media (max-width: 36rem) {
+            :root {
+                --page-padding: 0.75rem;
+            }
+
+            #mc_embed_signup h2 {
+                margin-bottom: 0.4rem;
+            }
+        }
+
+        @media (max-height: 30rem) {
+            .page {
+                flex-direction: row;
+            }
+
+            .slider {
+                height: 100%;
+                width: auto;
+                flex: 1 1 auto;
+            }
+
+            .signup {
+                width: min(45%, 22rem);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- congrats you found the hidden message 😀 -->
+    <main class="page">
+        <section class="slider" aria-label="Teaser artwork">
+            <div class="slider-frame">
+                <img class="slide is-active" src="ipom-website-teaser-asemic-c1.svg" alt="" decoding="async">
+                <img class="slide" src="ipom-website-teaser-asemic-c2.svg" alt="" decoding="async">
+                <img class="slide" src="ipom-website-teaser-asemic-c3.svg" alt="" decoding="async">
+                <img class="slide" src="ipom-website-teaser-asemic-c4.svg" alt="" decoding="async">
+                <img class="slide" src="ipom-website-teaser-asemic-c5.svg" alt="" decoding="async">
+            </div>
+        </section>
+        <section class="signup">
+            <div id="mc_embed_signup">
+                <form
+                    action="https://josephsalazar.us4.list-manage.com/subscribe/post?u=bb9bd9af4b19463331457da0e&amp;id=96852febc8&amp;f_id=00235ee8f0"
+                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                    target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                        <h2>Get Notified When The Internet Portals of Meaninglessness is Online</h2>
+                        <div class="mc-field-group">
+                            <label for="mce-EMAIL">Email Address</label>
+                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
+                                placeholder="your@email.com" required>
+                            <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
+                        </div>
+                        <div id="mce-responses" class="clear foot">
+                            <div class="response" id="mce-error-response" style="display:none"></div>
+                            <div class="response" id="mce-success-response" style="display:none"></div>
+                        </div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                name="b_bb9bd9af4b19463331457da0e_96852febc8" tabindex="-1" value=""></div>
+                        <div class="optionalParent">
+                            <div class="clear foot">
+                                <input type="submit" value="⌘" name="subscribe" id="mc-embedded-subscribe"
+                                    class="button">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script>
+        (function () {
+            const slides = [...document.querySelectorAll('.slide')];
+            let index = 0;
+            let timer = null;
+
+            function tick() {
+                slides[index].classList.remove('is-active');
+                index = (index + 1) % slides.length;
+                slides[index].classList.add('is-active');
+            }
+
+            function start() {
+                if (timer === null) timer = setInterval(tick, 6000); // 3s hold + 3s crossfade
+            }
+
+            function stop() {
+                clearInterval(timer);
+                timer = null;
+            }
+
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) stop(); else start();
+            });
+
+            const first = slides[0];
+            if (first.complete) start();
+            else first.addEventListener('load', start, { once: true });
+        })();
+    </script>
+    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+    <script
+        type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'MMERGE3'; ftypes[3] = 'text'; fnames[4] = 'MMERGE4'; ftypes[4] = 'text'; fnames[5] = 'MMERGE5'; ftypes[5] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+</body>
+
+</html>

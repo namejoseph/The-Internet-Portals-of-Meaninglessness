@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>The Internet Portals of Meaninglessness</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- TOP STRIP -->
+  <header class="top-strip">
+
+    <svg
+      class="top-strip-svg"
+      viewBox="0 0 2048 90"
+      preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
+      role="group"
+      aria-label="Control strip"
+    >
+
+      <!-- COMMAS -->
+      <g class="comma-group" data-strip-group="commas">
+
+        <rect
+          id="comma-marker"
+          class="comma-marker"
+          x="52"
+          y="20"
+          width="48"
+          height="50"
+          rx="2"
+        />
+
+        <text x="18"  y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 1">,</text>
+        <text x="63"  y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 2" aria-pressed="true">,</text>
+        <text x="108" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 3">,</text>
+        <text x="153" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 4">,</text>
+        <text x="198" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 5">,</text>
+        <text x="243" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 6">,</text>
+        <text x="288" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 7">,</text>
+        <text x="333" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 8">,</text>
+
+      </g>
+
+
+      <!-- TARGET -->
+      <g data-strip-group="target">
+        <g
+          id="target-control"
+          class="target"
+          transform="translate(405 45)"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate target colors"
+        >
+          <circle r="27" fill="#a78daf" />
+          <circle r="17" fill="#77639a" />
+          <circle r="10" fill="#514287" />
+        </g>
+      </g>
+
+
+      <!-- DOT AND DASH -->
+      <g data-strip-group="dot-dash">
+        <circle
+          class="mark toggle-outline"
+          cx="465"
+          cy="45"
+          r="7"
+          role="button"
+          tabindex="0"
+          aria-label="Toggle dot outline"
+          aria-pressed="false"
+        />
+
+        <rect
+          class="mark toggle-outline"
+          x="503"
+          y="40"
+          width="27"
+          height="10"
+          rx="1"
+          role="button"
+          tabindex="0"
+          aria-label="Toggle dash outline"
+          aria-pressed="false"
+        />
+      </g>
+
+
+      <!-- MINUS AND PLUS -->
+      <g data-strip-group="minus-plus">
+        <rect
+          class="mark rotates"
+          x="664"
+          y="40"
+          width="24"
+          height="10"
+          rx="5"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate minus"
+        />
+
+        <path
+          class="mark rotates"
+          d="M757 45 H775 M766 36 V54"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate plus"
+        />
+      </g>
+
+
+      <!-- BRIGHTNESS DOT -->
+      <g data-strip-group="brightness">
+        <circle
+          id="brightness-dot"
+          class="mark"
+          cx="850"
+          cy="45"
+          r="7"
+          role="button"
+          tabindex="0"
+          aria-label="Randomize dot brightness"
+        />
+      </g>
+
+
+      <!-- SLIDER -->
+      <g id="main-slider" class="slider" data-strip-group="slider">
+
+        <rect class="slider-tick" x="1012" y="31" width="8" height="28" rx="4" />
+
+        <line
+          class="slider-track"
+          x1="1060"
+          y1="45"
+          x2="1430"
+          y2="45"
+        />
+
+        <circle
+          id="slider-knob"
+          class="slider-knob"
+          cx="1366"
+          cy="45"
+          r="8"
+          role="slider"
+          tabindex="0"
+          aria-label="Slider"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="83"
+        />
+
+        <rect class="slider-tick" x="1468" y="31" width="8" height="28" rx="4" />
+
+      </g>
+
+
+      <!-- BARS BUTTON -->
+      <g
+        id="bars-control"
+        class="bars"
+        role="button"
+        tabindex="0"
+        aria-label="Swap bars colors"
+        aria-pressed="false"
+        data-strip-group="bars"
+      >
+        <rect class="bars-bg" x="1964" y="17" width="56" height="56" rx="8" />
+        <rect class="bars-bar" x="1976" y="30" width="7" height="30" rx="1.5" />
+        <rect class="bars-bar" x="1988.5" y="30" width="7" height="30" rx="1.5" />
+        <rect class="bars-bar" x="2001" y="30" width="7" height="30" rx="1.5" />
+      </g>
+
+    </svg>
+
+  </header>
+
+  <main class="site-shell" aria-label="The Internet Portals of Meaninglessness">
+
+    <!-- ROW 1 -->
+    <div class="row row-1">
+
+      <div class="panel" id="main-event">
+        <div class="panel-content"></div>
+      </div>
+
+      <div class="panel" id="informatics-menu">
+        <div class="panel-content"></div>
+      </div>
+
+      <div class="panel" id="ticker-display">
+        <div class="panel-content ticker">
+          <div class="ticker-label" role="img" aria-label="Ticker display"></div>
+          <canvas class="ticker-canvas" aria-hidden="true"></canvas>
+          <div class="ticker-foot"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ROW 2 -->
+    <div class="row row-2">
+
+      <div class="panel" id="biology">
+        <div class="panel-content"></div>
+      </div>
+
+    </div>
+
+
+    <!-- ROW 3 -->
+    <div class="row row-3">
+
+      <div class="panel" id="otherworldly-entities">
+        <div class="panel-content"></div>
+      </div>
+
+      <div class="panel" id="warped-lines">
+        <div class="panel-content"></div>
+      </div>
+
+      <div class="panel" id="glyph-deterioration">
+        <div class="panel-content"></div>
+      </div>
+
+    </div>
+
+    <div class="panel panel-bottom" id="footer-fine-print">
+      <div class="panel-content fine-print">
+        <div class="fine-print-side" aria-hidden="true"></div>
+        <img class="fine-print-center" src="ipom-img-footerfineprint-center.svg" alt="Fine print">
+        <div class="fine-print-side" aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script src="ticker-display.js"></script>
+  <script src="footer-fine-print.js"></script>
+
+</body>
+</html>
