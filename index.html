@@ -39,6 +39,16 @@
             background: var(--color-page);
         }
 
+        /* Custom cursor: three concentric circles, colors rotate on click (see script) */
+        html,
+        html * {
+            cursor: inherit;
+        }
+
+        html {
+            cursor: var(--cursor, auto);
+        }
+
         body {
             height: 100vh;
             height: 100dvh;
@@ -309,7 +319,7 @@
                         <div class="mc-field-group">
                             <label for="mce-EMAIL">Email Address</label>
                             <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
-                                placeholder="email@domain.tld" required>
+                                placeholder="local-part@second-level-domain.tld" required>
                             <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
                         </div>
                         <div id="mce-responses" class="clear foot">
@@ -358,6 +368,33 @@
             const first = slides[0];
             if (first.complete) start();
             else first.addEventListener('load', start, { once: true });
+        })();
+
+        (function () {
+            // Three concentric circles; every second the colors rotate
+            // outer -> middle, middle -> inner, inner -> outer.
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const SIZE = 32;
+            let colors = ['#a798b3', '#866b99', '#4c4080']; // outer, middle, inner
+
+            function render() {
+                const c = SIZE / 2;
+                const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}">` +
+                    `<circle cx="${c}" cy="${c}" r="${c}" fill="${colors[0]}"/>` +
+                    `<circle cx="${c}" cy="${c}" r="${c * 0.72}" fill="${colors[1]}"/>` +
+                    `<circle cx="${c}" cy="${c}" r="${c * 0.38}" fill="${colors[2]}"/></svg>`;
+                const url = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+                document.documentElement.style.setProperty('--cursor', `url("${url}") ${c} ${c}, auto`);
+            }
+
+            render();
+            if (!reduceMotion) {
+                setInterval(function () {
+                    colors = [colors[2], colors[0], colors[1]];
+                    render();
+                }, 1000);
+            }
         })();
     </script>
     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
