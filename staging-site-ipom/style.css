@@ -40,6 +40,9 @@ body {
   --color-deterioration-stripe-b: #3d0f0c;
   --color-deterioration-plate: #3d0f0c;
   --color-deterioration-glyph-hover: #0167a2;
+  --color-informatics-border: #fff;
+  --color-informatics-ink: #acdefb;
+  --color-informatics-marker: #0167a2;
 }
 
 html,
@@ -417,6 +420,93 @@ path.rotates:hover {
   .ticker-label {
     animation: none;
   }
+}
+
+
+/* ========================================
+   OTHERWORLDLY ENTITIES
+======================================== */
+
+#otherworldly-entities {
+  overflow: hidden;
+}
+
+.entities {
+  position: absolute;
+  inset: 0;
+  background: url("ipom-website-img-entity.gif") center / cover no-repeat;
+}
+
+
+/* ========================================
+   INFORMATICS MENU
+======================================== */
+
+@font-face {
+  font-family: "Portal Galactico";
+  src: url("portal-galactico.otf") format("opentype");
+  font-display: block;
+}
+
+#informatics-menu {
+  overflow: hidden;
+  background: #000;
+}
+
+.informatics {
+  position: absolute;
+  inset: 0;
+  padding: 4%;
+  container-type: size;
+}
+
+.informatics-frame {
+  height: 100%;
+  border: 1px solid var(--color-informatics-border);
+  border-radius: 8px;
+  padding: 6% 8%;
+  overflow: hidden;
+  font-family: "Portal Galactico", monospace;
+  font-size: clamp(0.61rem, 5.4cqw, 1.15rem);
+  line-height: 1.5;
+  color: var(--color-informatics-ink);
+}
+
+.informatics-title {
+  color: var(--color-informatics-ink);
+  letter-spacing: 0.1em;
+  margin: 0 0 0.9em;
+}
+
+.informatics-heading {
+  margin: 0.9em 0 0.35em;
+}
+
+.informatics-stream {
+  white-space: nowrap;
+  transition: opacity 0.6s ease;
+}
+
+.informatics-stream.is-fading {
+  opacity: 0;
+}
+
+.informatics-stream ul {
+  margin: 0 0 0.6em;
+  padding-left: 0;
+  list-style: none;
+}
+
+.informatics-stream li {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.informatics-stream li::before {
+  content: "\2022\00A0\00A0";
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--color-informatics-marker);
 }
 
 

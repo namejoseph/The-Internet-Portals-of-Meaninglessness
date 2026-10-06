@@ -198,7 +198,15 @@
       </div>
 
       <div class="panel" id="informatics-menu">
-        <div class="panel-content"></div>
+        <div class="panel-content informatics">
+          <div
+            class="informatics-frame"
+            role="img"
+            aria-label="Informatics menu"
+          >
+            <div class="informatics-stream" aria-hidden="true"></div>
+          </div>
+        </div>
       </div>
 
       <div class="panel" id="ticker-display">
@@ -226,7 +234,11 @@
     <div class="row row-3">
 
       <div class="panel" id="otherworldly-entities">
-        <div class="panel-content"></div>
+        <div
+          class="panel-content entities"
+          role="img"
+          aria-label="Otherworldly entity"
+        ></div>
       </div>
 
       <div class="panel" id="warped-lines">
@@ -234,7 +246,14 @@
       </div>
 
       <div class="panel" id="glyph-deterioration">
-        <div class="panel-content"></div>
+        <div class="panel-content deterioration">
+          <canvas class="deterioration-canvas" aria-hidden="true"></canvas>
+          <div class="deterioration-plate" aria-hidden="true"></div>
+          <div class="deterioration-body">
+            <div class="deterioration-glyph" role="img" aria-label="Baleze glyph"></div>
+            <div class="deterioration-text" aria-hidden="true"></div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -252,6 +271,8 @@
   <script src="script.js"></script>
   <script src="ticker-display.js"></script>
   <script src="footer-fine-print.js"></script>
+  <script src="glyph-deterioration.js"></script>
+  <script src="informatics-menu.js"></script>
 
 </body>
 </html>
