@@ -36,6 +36,10 @@ body {
   --ticker-label-padding: clamp(0.4rem, 0.8vw, 0.65rem);
   --ticker-foot-height: max(10px, clamp(0.625rem, 1vw, 0.875rem));
   --color-fine-print: #a798b3;
+  --color-deterioration-stripe-a: #0167a2;
+  --color-deterioration-stripe-b: #3d0f0c;
+  --color-deterioration-plate: #3d0f0c;
+  --color-deterioration-glyph-hover: #0167a2;
 }
 
 html,
@@ -412,6 +416,111 @@ path.rotates:hover {
 @media (prefers-reduced-motion: reduce) {
   .ticker-label {
     animation: none;
+  }
+}
+
+
+/* ========================================
+   GLYPH DETERIORATION
+======================================== */
+
+@font-face {
+  font-family: "Portal Glyph";
+  src:
+    url("portal-glyph.woff2") format("woff2"),
+    url("portal-glyph.woff") format("woff"),
+    url("portal-glyph.ttf") format("truetype");
+  font-display: block;
+}
+
+#glyph-deterioration {
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-deterioration-stripe-a) 0 3px,
+    var(--color-deterioration-stripe-b) 3px 6px
+  );
+}
+
+.deterioration {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  /* Stepped, chewed rectangle with diagonal cuts; edit here to reshape the plate. */
+  --plate-shape: polygon(
+    0% 6%, 4% 6%, 4% 0%, 20% 0%, 23% 3%, 38% 3%, 38% 0%, 62% 0%, 62% 4%,
+    78% 4%, 78% 0%, 93% 0%, 93% 5%, 100% 5%,
+    100% 32%, 97% 32%, 97% 48%, 100% 48%, 100% 63%, 96% 66%, 96% 80%, 100% 83%,
+    100% 100%, 85% 100%, 85% 96%, 70% 96%, 70% 100%, 42% 100%, 42% 97%,
+    30% 97%, 27% 100%, 11% 100%, 11% 96%, 6% 96%, 6% 100%, 0% 100%,
+    0% 72%, 3% 72%, 3% 55%, 0% 52%, 0% 30%, 3% 27%, 3% 14%, 0% 11%
+  );
+}
+
+#glyph-deterioration .deterioration-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.deterioration-plate {
+  position: absolute;
+  inset: 7%;
+  z-index: 1;
+  background: var(--color-deterioration-plate);
+  clip-path: var(--plate-shape);
+}
+
+.deterioration-body {
+  position: absolute;
+  inset: 7%;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  row-gap: 8%;
+  place-items: center;
+  padding: 8% 10% 10%;
+}
+
+.deterioration-glyph {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  min-height: 0;
+  aspect-ratio: 1041.38 / 1080;
+  background-color: var(--color-glyph);
+  -webkit-mask: url("ipom-img-balezeglyph.svg") center / contain no-repeat;
+  mask: url("ipom-img-balezeglyph.svg") center / contain no-repeat;
+  transition: background-color 1.8s ease;
+}
+
+.deterioration-glyph:hover {
+  background-color: var(--color-deterioration-glyph-hover);
+}
+
+.deterioration-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05em;
+  max-width: 100%;
+  color: var(--color-glyph);
+  font-family: "Portal Glyph", monospace;
+  font-size: clamp(0.4rem, min(2.7cqw, 6cqh), 1.1rem);
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0.4em;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deterioration-glyph {
+    transition: none;
   }
 }
 
