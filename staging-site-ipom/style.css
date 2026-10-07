@@ -43,6 +43,9 @@ body {
   --color-informatics-border: #fff;
   --color-informatics-ink: #acdefb;
   --color-informatics-marker: #0167a2;
+  --color-main-event-outer: #011724;
+  --color-main-event-inner: #012a42;
+  --color-main-event-glow: #0167a2;
 }
 
 html,
@@ -418,6 +421,140 @@ path.rotates:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .ticker-label {
+    animation: none;
+  }
+}
+
+
+/* ========================================
+   MAIN EVENT
+======================================== */
+
+#main-event {
+  overflow: hidden;
+}
+
+.main-event {
+  position: absolute;
+  inset: 0;
+  container-type: size;
+  background: var(--color-main-event-outer);
+}
+
+.main-event-inner {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 29.5%;
+  bottom: 29.5%;
+  background: var(--color-main-event-inner);
+}
+
+.main-event-stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 20% 10% 7% 26% 7% 10% 20%;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+
+.main-event-side {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  gap: min(7.2cqh, 3.6cqw);
+}
+
+#main-event img.main-event-detail {
+  width: auto;
+  height: min(2.8cqh, 1.4cqw);
+  max-width: 100%;
+}
+
+.main-event-dots {
+  width: 100%;
+  height: max(4px, min(1.6cqh, 0.8cqw));
+}
+
+#main-event .main-event-dots canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#main-event img.main-event-features {
+  flex: 0 0 auto;
+  width: auto;
+  height: min(20cqh, 10cqw);
+  aspect-ratio: 1 / 1;
+  transform: translateY(-3cqh);
+}
+
+/* Hang each blob cluster slightly off the inner box edge (offsets account
+   for each SVG's own side padding: 10% in features1, 3% in features2). */
+#main-event img.main-event-features[src$="features1.svg"] {
+  justify-self: start;
+  transform: translate(-18%, -3cqh);
+}
+
+#main-event img.main-event-features[src$="features2.svg"] {
+  justify-self: end;
+  transform: translate(11%, -3cqh);
+}
+
+#main-event img.main-event-headliner {
+  flex: 0 0 auto;
+  width: auto;
+  height: min(68cqh, 34cqw);
+  aspect-ratio: 221.32 / 1080;
+  transform: translateY(-3cqh);
+}
+
+.main-event-center {
+  position: relative;
+  align-self: stretch;
+}
+
+#main-event .main-event-center canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#main-event img.main-event-title {
+  position: absolute;
+  left: 50%;
+  bottom: 11%; /* centre of the band below the inner box (78% -> 100%) */
+  transform: translate(-50%, 50%);
+  width: min(40cqw, 90cqh);
+  height: auto;
+  filter:
+    drop-shadow(0 0 0.3cqw var(--color-main-event-glow))
+    drop-shadow(0 0 1cqw var(--color-main-event-glow));
+  animation: main-event-glow 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes main-event-glow {
+  from {
+    filter:
+      drop-shadow(0 0 0.2cqw var(--color-main-event-glow))
+      drop-shadow(0 0 0.6cqw var(--color-main-event-glow));
+  }
+  to {
+    filter:
+      drop-shadow(0 0 0.5cqw var(--color-main-event-glow))
+      drop-shadow(0 0 1.8cqw var(--color-main-event-glow));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-event img.main-event-title {
     animation: none;
   }
 }
