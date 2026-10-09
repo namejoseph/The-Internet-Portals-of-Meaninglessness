@@ -1197,14 +1197,15 @@ body.welcome-open {
   flex: none;
 }
 
+/* --fine-print-scale is set by footer-fine-print.js on very narrow screens. */
 #footer-fine-print .fine-print-center {
-  height: 55%;
-  max-height: 2rem;
+  height: calc(55% * var(--fine-print-scale, 1));
+  max-height: calc(2rem * var(--fine-print-scale, 1));
 }
 
 #footer-fine-print .fine-print-glyph {
-  height: 55%;
-  max-height: 1.75rem;
+  height: calc(55% * var(--fine-print-scale, 1));
+  max-height: calc(1.75rem * var(--fine-print-scale, 1));
   aspect-ratio: 1 / 1;
 }
 

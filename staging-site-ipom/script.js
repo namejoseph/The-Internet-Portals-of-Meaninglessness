@@ -147,10 +147,22 @@
     }
   });
 
-  // 7. Bars button: swap the box color with the bars.
+  // 7. Bars button: toggle the music, swapping the box/bar colors as feedback.
+  // The button mirrors the audio's real play/pause events, so it stays in sync
+  // no matter what started or stopped playback.
   const bars = svg.querySelector('#bars-control');
+  const audio = document.getElementById('welcome-audio');
+  const syncBars = (playing) => {
+    bars.classList.toggle('is-swapped', playing);
+    bars.setAttribute('aria-pressed', String(playing));
+    bars.setAttribute('aria-label', playing ? 'Pause music' : 'Play music');
+  };
+  audio.addEventListener('play', () => syncBars(true));
+  audio.addEventListener('pause', () => syncBars(false));
   activateOnKey(bars, () => {
-    const swapped = bars.classList.toggle('is-swapped');
-    bars.setAttribute('aria-pressed', String(swapped));
+    // Don't start the music before the welcome screen has been dismissed.
+    if (document.body.classList.contains('welcome-open')) return;
+    if (audio.paused) audio.play().catch(() => {});
+    else audio.pause();
   });
 })();
