@@ -46,6 +46,15 @@ body {
   --color-main-event-outer: #011724;
   --color-main-event-inner: #012a42;
   --color-main-event-glow: #0167a2;
+  --color-biology-media: #011724;
+  --color-biology-feature: #3d0f0c;
+  --color-warped-bg: #adc7a9;
+  --color-welcome-bg: rgb(172 222 251 / 0.9);
+  --color-welcome-ink: #97b5c7;
+  --color-welcome-dots: #0167a2;
+  --color-welcome-cycle-a: #4c4080;
+  --color-welcome-cycle-b: #866b99;
+  --color-welcome-cycle-c: #a798b3;
 }
 
 html,
@@ -556,6 +565,402 @@ path.rotates:hover {
 @media (prefers-reduced-motion: reduce) {
   #main-event img.main-event-title {
     animation: none;
+  }
+}
+
+
+/* ========================================
+   BIOLOGY
+======================================== */
+
+#biology {
+  overflow: hidden;
+  container: biology / size;
+}
+
+.biology {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 41.5fr) minmax(0, 55fr);
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 1.5cqw;
+  padding: 5cqh 1cqw 4cqh;
+  background: url("ipom-website-biology-bg.png") center / cover;
+}
+
+.biology-media,
+.biology-feature {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left column: looping background video (cover-cropped) under the overlay glyphs. */
+.biology-media {
+  background: var(--color-biology-media) center / cover no-repeat;
+  display: grid;
+  place-items: center;
+}
+
+#biology video.biology-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+#biology img.biology-overlay {
+  position: relative;
+  z-index: 1;
+  width: 76%;
+  height: auto;
+  max-height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.4cqh 0.8cqh rgba(0, 0, 0, 0.75));
+}
+
+.biology-column {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 75fr) minmax(0, 25fr);
+  place-items: center;
+}
+
+.biology-feature {
+  width: 100%;
+  height: 100%;
+  background: var(--color-biology-feature);
+}
+
+#biology img.biology-heading {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 15%;
+  max-width: 32%;
+  object-fit: contain;
+}
+
+/* Right column: smoke canvas (biology-smoke.js), below the heading glyphs. */
+.biology-specimen {
+  position: absolute;
+  inset: 27% 1% 6%;
+}
+
+#biology .biology-specimen canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Soften the edges so smoke fades in/out instead of being cut off. */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
+    linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 6%, #000 94%, transparent),
+    linear-gradient(transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
+}
+
+#biology img.biology-footer {
+  width: auto;
+  height: 58%;
+  max-width: 46%;
+  object-fit: contain;
+}
+
+/* Square / narrow panels (<= 56rem): stack the columns. */
+@container biology (aspect-ratio < 2) {
+  .biology {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 42fr) minmax(0, 58fr);
+    row-gap: 3cqh;
+    padding: 4cqw;
+  }
+}
+
+
+/* ========================================
+   WELCOME SCREEN
+======================================== */
+
+/* Lock page scroll while the welcome layer is up (mobile layout scrolls). */
+body.welcome-open {
+  overflow: hidden;
+}
+
+.welcome {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  justify-items: center;
+  row-gap: 3vh;
+  padding: 2vh 0;
+  background: var(--color-welcome-bg);
+  /* Keeps the site behind hinted at but not readable. */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--color-welcome-ink);
+  font-family: "velzyland", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  overflow: hidden;
+  transition: opacity 1.2s ease;
+}
+
+.welcome.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.welcome[hidden] {
+  display: none;
+}
+
+.welcome-dots {
+  width: 6px;
+  height: 100%;
+  background: radial-gradient(circle, var(--color-welcome-dots) 1.4px, transparent 2px) center top / 6px 15px repeat-y;
+}
+
+.welcome-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6vh;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-title {
+  margin: 0;
+  font: inherit;
+  font-size: 3.7vw;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.welcome-credit {
+  margin: 0;
+  font-size: 1.8vw;
+  letter-spacing: 0.78em;
+  margin-right: -0.78em; /* cancel trailing letter-spacing so it centres */
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.welcome-credit span {
+  display: inline-block;
+  transition: transform 0.35s ease;
+}
+
+.welcome-credit span.is-flipped {
+  transform: scaleY(-1);
+}
+
+.welcome-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.8vw;
+  margin-top: 0.6vh;
+}
+
+.welcome-enter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1em 0.4em;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 2.55vw;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Velzyland's ink sits off-centre in its line box, by a different amount per browser.
+   welcome.js measures the real glyph bounds and sets --enter-nudge (in em). */
+.welcome-enter > span {
+  display: inline-block;
+  transform: translateY(var(--enter-nudge, 0em));
+}
+
+.welcome-social {
+  display: flex;
+  align-items: center;
+  gap: 1.35vw;
+  font-size: 2.4vw;
+}
+
+.welcome-social a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Everything clickable cycles through the three purples (one colour per second) on hover. */
+@keyframes welcome-cycle {
+  0% { color: var(--color-welcome-cycle-a); }
+  33.333% { color: var(--color-welcome-cycle-b); }
+  66.667% { color: var(--color-welcome-cycle-c); }
+}
+
+@keyframes welcome-cycle-fill {
+  0% { background-color: var(--color-welcome-cycle-a); border-color: var(--color-welcome-cycle-a); }
+  33.333% { background-color: var(--color-welcome-cycle-b); border-color: var(--color-welcome-cycle-b); }
+  66.667% { background-color: var(--color-welcome-cycle-c); border-color: var(--color-welcome-cycle-c); }
+}
+
+.welcome-title:hover,
+.welcome-credit:hover,
+.welcome-social a:hover {
+  animation: welcome-cycle 3s step-end infinite;
+}
+
+/* Button: stroke -> fill on hover. */
+.welcome-enter:hover {
+  color: #acdefb;
+  animation: welcome-cycle-fill 3s step-end infinite;
+}
+
+.welcome :focus-visible {
+  outline: 2px solid var(--color-welcome-cycle-a);
+  outline-offset: 3px;
+}
+
+@media (max-width: 36rem) {
+  .welcome-title {
+    font-size: 8.5vw;
+    white-space: normal;
+    padding: 0 4vw;
+  }
+
+  .welcome-credit {
+    font-size: 3vw;
+    letter-spacing: 0.34em;
+    margin-right: -0.34em;
+    white-space: nowrap;
+  }
+
+  .welcome-actions {
+    flex-direction: column;
+    gap: 2.5vh;
+  }
+
+  .welcome-enter {
+    font-size: 5.25vw;
+  }
+
+  .welcome-social {
+    gap: 3.75vw;
+    font-size: 5.25vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome {
+    transition: none;
+  }
+
+  .welcome-credit span {
+    transition: none;
+  }
+}
+
+
+/* ========================================
+   WARPED LINES
+======================================== */
+
+#warped-lines {
+  overflow: hidden;
+  container: warped / size;
+}
+
+.warped {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  row-gap: 3cqh;
+  padding: 2cqh 1.8cqw 3cqh;
+  background: var(--color-warped-bg);
+}
+
+/* Top: three warped-line SVGs stretched to fill, 3s hold / 3s crossfade (18s cycle). */
+.warped-slider {
+  position: relative;
+  min-height: 0;
+}
+
+#warped-lines .warped-slider svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  opacity: 0;
+  will-change: opacity;
+  animation: warped-cycle 18s linear infinite;
+}
+
+#warped-lines .warped-slider svg:nth-of-type(2) {
+  animation-delay: -12s;
+}
+
+#warped-lines .warped-slider svg:nth-of-type(3) {
+  animation-delay: -6s;
+}
+
+@keyframes warped-cycle {
+  0%,
+  16.667% { opacity: 1; }
+  33.333%,
+  83.333% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Bottom: one calibration strip, or two side by side when the panel is wide. */
+.warped-calibration {
+  display: flex;
+}
+
+#warped-lines .warped-calibration img {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+
+#warped-lines .warped-calibration img:nth-child(2) {
+  display: none;
+}
+
+@container warped (aspect-ratio >= 2) {
+  #warped-lines .warped-calibration img:nth-child(2) {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #warped-lines .warped-slider svg {
+    animation: none;
+  }
+
+  #warped-lines .warped-slider svg:first-of-type {
+    opacity: 1;
   }
 }
 

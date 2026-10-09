@@ -10,10 +10,40 @@
 
   <title>The Internet Portals of Meaninglessness</title>
 
+  <link rel="stylesheet" href="https://use.typekit.net/zzf1dix.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="welcome-open">
+
+  <!-- WELCOME SCREEN -->
+  <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome-dots" aria-hidden="true"></div>
+    <div class="welcome-center">
+      <h1 class="welcome-title" id="welcome-title" tabindex="0" aria-label="Welcome to The Internet Portals of Meaninglessness">WELCOME TO THE INTERNET PORTALS OF MEANINGLESSNESS</h1>
+      <p class="welcome-credit" tabindex="0" role="button" aria-pressed="false" aria-label="Imagined and assembled by Joseph Salazar">imagined and assembled by joseph salazar</p>
+      <div class="welcome-actions">
+        <button class="welcome-enter" type="button"><span>enter site</span></button>
+        <nav class="welcome-social" aria-label="Listen">
+          <a href="#" aria-label="Apple Music"><i class="fa-brands fa-apple" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Amazon Music"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+    </div>
+    <div class="welcome-dots" aria-hidden="true"></div>
+  </div>
+  <!-- Placeholder (2s of silence): replace welcome-audio.mp3 with the real track. -->
+  <audio id="welcome-audio" src="welcome-audio.mp3" preload="auto" loop></audio>
 
   <!-- TOP STRIP -->
   <header class="top-strip">
@@ -248,7 +278,21 @@
     <div class="row row-2">
 
       <div class="panel" id="biology">
-        <div class="panel-content"></div>
+        <div class="panel-content biology">
+          <div class="biology-media">
+            <video class="biology-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+              <source src="js-ipom-website-biological-organicsynthesis.mov" type="video/mp4">
+            </video>
+            <img class="biology-overlay" src="ipom-website-biology-classifcation3.svg" alt="">
+          </div>
+          <div class="biology-column">
+            <div class="biology-feature">
+              <img class="biology-heading" src="ipom-website-biology-classifcation2.svg" alt="">
+              <div class="biology-specimen" aria-hidden="true"><canvas></canvas></div>
+            </div>
+            <img class="biology-footer" src="ipom-website-biology-classifcation1.svg" alt="">
+          </div>
+        </div>
       </div>
 
     </div>
@@ -266,7 +310,18 @@
       </div>
 
       <div class="panel" id="warped-lines">
-        <div class="panel-content"></div>
+        <div class="panel-content warped" role="img" aria-label="Warped lines">
+          <div class="warped-slider" aria-hidden="true">
+            <!-- Wrapped in an outer SVG with preserveAspectRatio="none" so each file stretches to fill. -->
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="js-ipom-website-warpedlines1.svg" width="2010" height="610"/></svg>
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="js-ipom-website-warpedlines2.svg" width="2010" height="610"/></svg>
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="js-ipom-website-warpedlines3.svg" width="2010" height="610"/></svg>
+          </div>
+          <div class="warped-calibration" aria-hidden="true">
+            <img src="js-ipom-website-warpedlines-calibration1.svg" alt="">
+            <img src="js-ipom-website-warpedlines-calibration2.svg" alt="">
+          </div>
+        </div>
       </div>
 
       <div class="panel" id="glyph-deterioration">
@@ -299,6 +354,8 @@
   <script src="informatics-menu.js"></script>
   <script src="main-event.js"></script>
   <script src="main-event-center.js"></script>
+  <script src="biology-smoke.js"></script>
+  <script src="welcome.js"></script>
 
 </body>
 </html>
