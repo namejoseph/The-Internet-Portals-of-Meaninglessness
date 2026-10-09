@@ -1,405 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Internet Portals of Meaninglessness</title>
-    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
-    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-title" content="The Internet Portals of Meaninglessness">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
-    <style>
-        :root {
-            --color-page: #011724;
-            --color-ink: #adc7a9;
-            --page-padding: clamp(0.75rem, 2vw, 2rem);
-            --gap: clamp(0.75rem, 2vh, 1.5rem);
-            --fade: 3000ms;
-        }
+  <meta charset="UTF-8">
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-        }
+  <title>The Internet Portals of Meaninglessness</title>
+  <meta name="description" content="🚫">
+  <meta name="author" content="Joseph Salazar">
+  <meta name="theme-color" content="#011724">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://theinternetportalsofmeaninglessness.com/">
 
-        html {
-            background: var(--color-page);
-        }
+  <!-- Favicons (relative to this page; update if the folder moves) -->
+  <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="The Internet Portals of Meaninglessness">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
 
-        /* Custom cursor: three concentric circles, colors rotate on click (see script) */
-        html,
-        html * {
-            cursor: inherit;
-        }
+  <!-- Open Graph / social previews (scrapers need absolute URLs) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Internet Portals of Meaninglessness">
+  <meta property="og:title" content="The Internet Portals of Meaninglessness">
+  <meta property="og:description" content="🚫">
+  <meta property="og:url" content="https://theinternetportalsofmeaninglessness.com/">
+  <meta property="og:image" content="https://theinternetportalsofmeaninglessness.com/assets/img/ipom-website-og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="The Internet Portals of Meaninglessness">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Internet Portals of Meaninglessness">
+  <meta name="twitter:description" content="🚫">
+  <meta name="twitter:image" content="https://theinternetportalsofmeaninglessness.com/assets/img/ipom-website-og.jpg">
+  <meta name="twitter:image:alt" content="The Internet Portals of Meaninglessness">
 
-        html {
-            cursor: var(--cursor, auto);
-        }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://theinternetportalsofmeaninglessness.com/#website",
+        "url": "https://theinternetportalsofmeaninglessness.com/",
+        "name": "The Internet Portals of Meaninglessness",
+        "description": "🚫",
+        "inLanguage": "en",
+        "image": "https://theinternetportalsofmeaninglessness.com/assets/img/ipom-website-og.jpg",
+        "creator": { "@id": "https://theinternetportalsofmeaninglessness.com/#joseph-salazar" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://theinternetportalsofmeaninglessness.com/#joseph-salazar",
+        "name": "Joseph Salazar",
+        "sameAs": []
+      }
+    ]
+  }
+  </script>
 
-        body {
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
-            color: var(--color-ink);
-            font-family: Helvetica, Arial, sans-serif;
-        }
-
-        .page {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: var(--gap);
-            padding: var(--page-padding);
-        }
-
-        .slider {
-            flex: 1 1 auto;
-            min-height: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            container-type: size;
-        }
-
-        .slider-frame {
-            position: relative;
-            width: min(100%, 100cqh);
-            aspect-ratio: 1 / 1;
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            opacity: 0;
-            transition: opacity var(--fade) ease-in-out;
-        }
-
-        .slide.is-active {
-            opacity: 1;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .slide {
-                transition: none;
-            }
-        }
-
-        .signup {
-            flex: 0 0 auto;
-            width: min(100%, 28rem);
-        }
-
-        /* Mailchimp overrides */
-        #mc_embed_signup {
-            background: transparent;
-            color: var(--color-ink);
-            font: inherit;
-            width: 100%;
-        }
-
-        #mc_embed_signup form {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        #mc_embed_signup #mc_embed_signup_scroll {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        #mc_embed_signup h2 {
-            margin: 0 0 0.5rem;
-            font-size: clamp(0.95rem, 2.2vw, 1.25rem);
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--color-ink);
-        }
-
-        #mc_embed_signup label {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-        }
-
-        #mc_embed_signup .mc-field-group {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            min-height: 0;
-        }
-
-        #mc_embed_signup .mc-field-group input {
-            display: block;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            text-indent: 0;
-        }
-
-        #mc_embed_signup .mc-field-group input.email {
-            width: 100%;
-            height: 2.5rem;
-            margin: 0;
-            padding: 0 0.75rem;
-            text-align: center;
-            background: transparent;
-            color: var(--color-ink);
-            border: 1px solid var(--color-ink);
-            border-radius: 0;
-            font: inherit;
-            font-size: 0.95rem;
-        }
-
-        #mc_embed_signup input.email::placeholder {
-            color: var(--color-ink);
-            opacity: 0.6;
-        }
-
-        #mc_embed_signup input.button,
-        #mc_embed_signup .button {
-            display: block;
-            width: 100%;
-            height: 2.5rem;
-            line-height: 2.5rem;
-            margin: 0.5rem 0 0;
-            padding: 0;
-            text-align: center;
-            background: var(--color-ink);
-            color: var(--color-page);
-            border: 0;
-            border-radius: 0;
-            font: inherit;
-            font-size: 0.95rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        #mc_embed_signup input.button:hover {
-            background: #fff;
-        }
-
-        #mc_embed_signup .optionalParent,
-        #mc_embed_signup .clear.foot {
-            display: block;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        #mc_embed_signup div#mce-responses {
-            float: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-        #mc_embed_signup div.response {
-            margin: 0.5rem 0 0;
-            padding: 0;
-            width: 100%;
-            float: none;
-            font-size: 0.85rem;
-            text-align: center;
-            color: var(--color-ink);
-        }
-
-        #mc_embed_signup #mce-error-response,
-        #mc_embed_signup #mce-success-response {
-            color: var(--color-ink);
-            font-weight: 400;
-        }
-
-        #mc_embed_signup .helper_text {
-            display: none;
-        }
-
-        #mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error {
-            border: 1px solid #fff;
-        }
-
-        #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
-            display: block;
-            width: 100%;
-            margin: 0.4rem 0 0;
-            padding: 0;
-            background: transparent;
-            border-radius: 0;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--color-ink);
-        }
-
-        #mc_embed_signup #mc-embedded-subscribe-form input:focus {
-            outline: none;
-            border-color: #fff;
-        }
-
-        #mc_embed_signup input.button:focus-visible {
-            background: var(--color-ink);
-            outline: 1px solid #fff;
-            outline-offset: 2px;
-        }
-
-        @media (max-width: 36rem) {
-            :root {
-                --page-padding: 0.75rem;
-            }
-
-            #mc_embed_signup h2 {
-                margin-bottom: 0.4rem;
-            }
-        }
-
-        @media (max-height: 30rem) {
-            .page {
-                flex-direction: row;
-            }
-
-            .slider {
-                height: 100%;
-                width: auto;
-                flex: 1 1 auto;
-            }
-
-            .signup {
-                width: min(45%, 22rem);
-            }
-        }
-    </style>
+  <link rel="stylesheet" href="https://use.typekit.net/zzf1dix.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
-    <!-- congrats you found the hidden message 😀 -->
-    <main class="page">
-        <section class="slider" aria-label="Teaser artwork">
-            <div class="slider-frame">
-                <img class="slide is-active" src="ipom-website-teaser-asemic-c1.svg" alt="" decoding="async">
-                <img class="slide" src="ipom-website-teaser-asemic-c2.svg" alt="" decoding="async">
-                <img class="slide" src="ipom-website-teaser-asemic-c3.svg" alt="" decoding="async">
-                <img class="slide" src="ipom-website-teaser-asemic-c4.svg" alt="" decoding="async">
-                <img class="slide" src="ipom-website-teaser-asemic-c5.svg" alt="" decoding="async">
+<body class="welcome-open">
+
+  <!-- WELCOME SCREEN -->
+  <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="welcome-dots" aria-hidden="true"></div>
+    <div class="welcome-center">
+      <h1 class="welcome-title" id="welcome-title" tabindex="0" aria-label="Welcome to The Internet Portals of Meaninglessness">WELCOME TO THE INTERNET PORTALS OF MEANINGLESSNESS</h1>
+      <p class="welcome-credit" tabindex="0" role="button" aria-pressed="false" aria-label="Imagined and assembled by Joseph Salazar">imagined and assembled by joseph salazar</p>
+      <div class="welcome-actions">
+        <button class="welcome-enter" type="button"><span>enter site</span></button>
+        <nav class="welcome-social" aria-label="Listen">
+          <a target="_blank" href="https://music.apple.com/us/album/the-internet-portals-of-meaninglessness-single/6815751137" aria-label="Apple Music"><i class="fa-brands fa-apple" aria-hidden="true"></i></a>
+          <a target="_blank" href="https://open.spotify.com/album/3JrDZ3qQotKK92caXUIRby?si=-MIG7QZeS4KkZPVdeo36dg" aria-label="Spotify"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
+          <a target="_blank" href="https://namejoseph.bandcamp.com/track/the-internet-portals-of-meaninglessness" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp" aria-hidden="true"></i></a>
+          <a target="_blank" href="https://www.amazon.com/dp/B0HKX56LHV/ref=sr_1_1?crid=1AKY1QUB74NZO&dib=eyJ2IjoiMSJ9.9pLggUrspbhh6AxBfXalDEK2P80X6xBLwOBmQLYOsyY.E4smwBwMlzfXPUPUrVGcqLwMWtP8I6_MxdxeIof2sTo&dib_tag=se&keywords=the+internet+portals+of+meaninglessness+music&qid=1791546874&sprefix=the+internet+portals+of+meaninglessness+music%2Caps%2C143&sr=8-1" aria-label="Amazon Music"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+          <a target="_blank" href="https://www.youtube.com/watch?v=rYrWNC4OJjI" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+    </div>
+    <div class="welcome-dots" aria-hidden="true"></div>
+  </div>
+  <audio id="welcome-audio" src="assets/audio/ipom.mp3" preload="auto" loop></audio>
+
+  <!-- TOP STRIP -->
+  <header class="top-strip">
+
+    <svg
+      class="top-strip-svg"
+      viewBox="0 0 2048 90"
+      preserveAspectRatio="xMidYMid meet"
+      xmlns="http://www.w3.org/2000/svg"
+      role="group"
+      aria-label="Control strip"
+    >
+
+      <!-- COMMAS -->
+      <g class="comma-group" data-strip-group="commas">
+
+        <rect
+          id="comma-marker"
+          class="comma-marker"
+          x="52"
+          y="20"
+          width="48"
+          height="50"
+          rx="2"
+        />
+
+        <text x="18"  y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 1">,</text>
+        <text x="63"  y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 2" aria-pressed="true">,</text>
+        <text x="108" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 3">,</text>
+        <text x="153" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 4">,</text>
+        <text x="198" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 5">,</text>
+        <text x="243" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 6">,</text>
+        <text x="288" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 7">,</text>
+        <text x="333" y="47" class="comma" role="button" tabindex="0" aria-label="Select comma 8">,</text>
+
+      </g>
+
+
+      <!-- TARGET -->
+      <g data-strip-group="target">
+        <g
+          id="target-control"
+          class="target"
+          transform="translate(405 45)"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate target colors"
+        >
+          <circle r="27" fill="#a78daf" />
+          <circle r="17" fill="#77639a" />
+          <circle r="10" fill="#514287" />
+        </g>
+      </g>
+
+
+      <!-- DOT AND DASH -->
+      <g data-strip-group="dot-dash">
+        <circle
+          class="mark toggle-outline"
+          cx="465"
+          cy="45"
+          r="7"
+          role="button"
+          tabindex="0"
+          aria-label="Toggle dot outline"
+          aria-pressed="false"
+        />
+
+        <rect
+          class="mark toggle-outline"
+          x="503"
+          y="40"
+          width="27"
+          height="10"
+          rx="1"
+          role="button"
+          tabindex="0"
+          aria-label="Toggle dash outline"
+          aria-pressed="false"
+        />
+      </g>
+
+
+      <!-- MINUS AND PLUS -->
+      <g data-strip-group="minus-plus">
+        <rect
+          class="mark rotates"
+          x="664"
+          y="40"
+          width="24"
+          height="10"
+          rx="5"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate minus"
+        />
+
+        <path
+          class="mark rotates"
+          d="M757 45 H775 M766 36 V54"
+          role="button"
+          tabindex="0"
+          aria-label="Rotate plus"
+        />
+      </g>
+
+
+      <!-- BRIGHTNESS DOT -->
+      <g data-strip-group="brightness">
+        <circle
+          id="brightness-dot"
+          class="mark"
+          cx="850"
+          cy="45"
+          r="7"
+          role="button"
+          tabindex="0"
+          aria-label="Randomize dot brightness"
+        />
+      </g>
+
+
+      <!-- SLIDER -->
+      <g id="main-slider" class="slider" data-strip-group="slider">
+
+        <rect class="slider-tick" x="1012" y="31" width="8" height="28" rx="4" />
+
+        <line
+          class="slider-track"
+          x1="1060"
+          y1="45"
+          x2="1430"
+          y2="45"
+        />
+
+        <circle
+          id="slider-knob"
+          class="slider-knob"
+          cx="1366"
+          cy="45"
+          r="8"
+          role="slider"
+          tabindex="0"
+          aria-label="Slider"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="83"
+        />
+
+        <rect class="slider-tick" x="1468" y="31" width="8" height="28" rx="4" />
+
+      </g>
+
+
+      <!-- BARS BUTTON -->
+      <g
+        id="bars-control"
+        class="bars"
+        role="button"
+        tabindex="0"
+        aria-label="Pause music"
+        aria-pressed="false"
+        data-strip-group="bars"
+      >
+        <rect class="bars-bg" x="1964" y="17" width="56" height="56" rx="8" />
+        <rect class="bars-bar" x="1976" y="30" width="7" height="30" rx="1.5" />
+        <rect class="bars-bar" x="1988.5" y="30" width="7" height="30" rx="1.5" />
+        <rect class="bars-bar" x="2001" y="30" width="7" height="30" rx="1.5" />
+      </g>
+
+    </svg>
+
+  </header>
+
+  <main class="site-shell" aria-label="The Internet Portals of Meaninglessness">
+
+    <!-- ROW 1 -->
+    <div class="row row-1">
+
+      <div class="panel" id="main-event">
+        <div class="panel-content main-event">
+          <div class="main-event-inner" aria-hidden="true"></div>
+          <div class="main-event-stage">
+            <div class="main-event-side">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details1.svg" alt="">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details2.svg" alt="">
+              <div class="main-event-dots" aria-hidden="true"><canvas></canvas></div>
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details3.svg" alt="">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details4.svg" alt="">
             </div>
-        </section>
-        <section class="signup">
-            <div id="mc_embed_signup">
-                <form
-                    action="https://josephsalazar.us4.list-manage.com/subscribe/post?u=bb9bd9af4b19463331457da0e&amp;id=96852febc8&amp;f_id=00235ee8f0"
-                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
-                    target="_blank" novalidate>
-                    <div id="mc_embed_signup_scroll">
-                        <h2>Get Notified When The Internet Portals of Meaninglessness is Online</h2>
-                        <div class="mc-field-group">
-                            <label for="mce-EMAIL">Email Address</label>
-                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
-                                placeholder="local-part@second-level-domain.tld" required>
-                            <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
-                        </div>
-                        <div id="mce-responses" class="clear foot">
-                            <div class="response" id="mce-error-response" style="display:none"></div>
-                            <div class="response" id="mce-success-response" style="display:none"></div>
-                        </div>
-                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
-                                name="b_bb9bd9af4b19463331457da0e_96852febc8" tabindex="-1" value=""></div>
-                        <div class="optionalParent">
-                            <div class="clear foot">
-                                <input type="submit" value="⌘" name="subscribe" id="mc-embedded-subscribe"
-                                    class="button">
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <img class="main-event-features" src="assets/img/ipom-website-mainevent-features1.svg" alt="">
+            <img class="main-event-headliner" src="assets/img/ipom-website-mainevent-headliner1.svg" alt="">
+            <div class="main-event-center" aria-hidden="true"><canvas></canvas></div>
+            <img class="main-event-headliner" src="assets/img/ipom-website-mainevent-headliner2.svg" alt="">
+            <img class="main-event-features" src="assets/img/ipom-website-mainevent-features2.svg" alt="">
+            <div class="main-event-side">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details5.svg" alt="">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details6.svg" alt="">
+              <div class="main-event-dots" aria-hidden="true"><canvas></canvas></div>
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details7.svg" alt="">
+              <img class="main-event-detail" src="assets/img/ipom-website-mainevent-details8.svg" alt="">
             </div>
-        </section>
-    </main>
-    <script>
-        (function () {
-            const slides = [...document.querySelectorAll('.slide')];
-            let index = 0;
-            let timer = null;
+          </div>
+          <img class="main-event-title" src="assets/img/ipom-website-mainevent-title.svg" alt="Main event">
+        </div>
+      </div>
 
-            function tick() {
-                slides[index].classList.remove('is-active');
-                index = (index + 1) % slides.length;
-                slides[index].classList.add('is-active');
-            }
+      <div class="panel" id="informatics-menu">
+        <div class="panel-content informatics">
+          <div
+            class="informatics-frame"
+            role="img"
+            aria-label="Informatics menu"
+          >
+            <div class="informatics-stream" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
 
-            function start() {
-                if (timer === null) timer = setInterval(tick, 6000); // 3s hold + 3s crossfade
-            }
+      <div class="panel" id="ticker-display">
+        <div class="panel-content ticker">
+          <div class="ticker-label" role="img" aria-label="Ticker display"></div>
+          <canvas class="ticker-canvas" aria-hidden="true"></canvas>
+          <div class="ticker-foot"></div>
+        </div>
+      </div>
 
-            function stop() {
-                clearInterval(timer);
-                timer = null;
-            }
+    </div>
 
-            document.addEventListener('visibilitychange', function () {
-                if (document.hidden) stop(); else start();
-            });
 
-            const first = slides[0];
-            if (first.complete) start();
-            else first.addEventListener('load', start, { once: true });
-        })();
+    <!-- ROW 2 -->
+    <div class="row row-2">
 
-        (function () {
-            // Three concentric circles; every second the colors rotate
-            // outer -> middle, middle -> inner, inner -> outer.
-            if (!window.matchMedia('(pointer: fine)').matches) return;
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const SIZE = 32;
-            let colors = ['#a798b3', '#866b99', '#4c4080']; // outer, middle, inner
+      <div class="panel" id="biology">
+        <div class="panel-content biology">
+          <div class="biology-media">
+            <video class="biology-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+              <source src="assets/video/js-ipom-website-biological-organicsynthesis.mp4" type="video/mp4">
+            </video>
+            <img class="biology-overlay" src="assets/img/ipom-website-biology-classifcation3.svg" alt="">
+          </div>
+          <div class="biology-column">
+            <div class="biology-feature">
+              <img class="biology-heading" src="assets/img/ipom-website-biology-classifcation2.svg" alt="">
+              <div class="biology-specimen" aria-hidden="true"><canvas></canvas></div>
+            </div>
+            <img class="biology-footer" src="assets/img/ipom-website-biology-classifcation1.svg" alt="">
+          </div>
+        </div>
+      </div>
 
-            function render() {
-                const c = SIZE / 2;
-                const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${SIZE}" height="${SIZE}" viewBox="0 0 ${SIZE} ${SIZE}">` +
-                    `<circle cx="${c}" cy="${c}" r="${c}" fill="${colors[0]}"/>` +
-                    `<circle cx="${c}" cy="${c}" r="${c * 0.72}" fill="${colors[1]}"/>` +
-                    `<circle cx="${c}" cy="${c}" r="${c * 0.38}" fill="${colors[2]}"/></svg>`;
-                const url = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-                document.documentElement.style.setProperty('--cursor', `url("${url}") ${c} ${c}, auto`);
-            }
+    </div>
 
-            render();
-            if (!reduceMotion) {
-                setInterval(function () {
-                    colors = [colors[2], colors[0], colors[1]];
-                    render();
-                }, 1000);
-            }
-        })();
-    </script>
-    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-    <script
-        type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'MMERGE3'; ftypes[3] = 'text'; fnames[4] = 'MMERGE4'; ftypes[4] = 'text'; fnames[5] = 'MMERGE5'; ftypes[5] = 'text'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+
+    <!-- ROW 3 -->
+    <div class="row row-3">
+
+      <div class="panel" id="otherworldly-entities">
+        <div
+          class="panel-content entities"
+          role="img"
+          aria-label="Otherworldly entity"
+        ></div>
+      </div>
+
+      <div class="panel" id="warped-lines">
+        <div class="panel-content warped" role="img" aria-label="Warped lines">
+          <div class="warped-slider" aria-hidden="true">
+            <!-- Wrapped in an outer SVG with preserveAspectRatio="none" so each file stretches to fill. -->
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="assets/img/js-ipom-website-warpedlines1.svg" width="2010" height="610"/></svg>
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="assets/img/js-ipom-website-warpedlines2.svg" width="2010" height="610"/></svg>
+            <svg viewBox="0 0 2010 610" preserveAspectRatio="none"><image href="assets/img/js-ipom-website-warpedlines3.svg" width="2010" height="610"/></svg>
+          </div>
+          <div class="warped-calibration" aria-hidden="true">
+            <img src="assets/img/js-ipom-website-warpedlines-calibration1.svg" alt="">
+            <img src="assets/img/js-ipom-website-warpedlines-calibration2.svg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="glyph-deterioration">
+        <div class="panel-content deterioration">
+          <canvas class="deterioration-canvas" aria-hidden="true"></canvas>
+          <div class="deterioration-plate" aria-hidden="true"></div>
+          <div class="deterioration-body">
+            <div class="deterioration-glyph" role="img" aria-label="Baleze glyph"></div>
+            <div class="deterioration-text" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="panel panel-bottom" id="footer-fine-print">
+      <div class="panel-content fine-print">
+        <div class="fine-print-side" aria-hidden="true"></div>
+        <img class="fine-print-center" src="assets/img/ipom-img-footerfineprint-center.svg" alt="Fine print">
+        <div class="fine-print-side" aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/ticker-display.js"></script>
+  <script src="assets/js/footer-fine-print.js"></script>
+  <script src="assets/js/glyph-deterioration.js"></script>
+  <script src="assets/js/informatics-menu.js"></script>
+  <script src="assets/js/main-event.js"></script>
+  <script src="assets/js/main-event-center.js"></script>
+  <script src="assets/js/biology-smoke.js"></script>
+  <script src="assets/js/welcome.js"></script>
+  <script src="assets/js/cursor-trail.js"></script>
+
 </body>
-
 </html>

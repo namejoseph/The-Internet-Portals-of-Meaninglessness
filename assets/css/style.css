@@ -421,7 +421,7 @@ path.rotates:hover {
   height: calc(var(--ticker-label-height) + var(--ticker-label-padding) * 2);
   padding: var(--ticker-label-padding) 0;
   background-image:
-    url("ipom-img-tickerdisplaylabel.svg"),
+    url("../img/ipom-img-tickerdisplaylabel.svg"),
     linear-gradient(var(--color-ticker), var(--color-ticker));
   background-origin: content-box, border-box;
   background-clip: content-box, border-box;
@@ -610,7 +610,7 @@ path.rotates:hover {
   grid-template-rows: minmax(0, 1fr);
   column-gap: 1.5cqw;
   padding: 5cqh 1cqw 4cqh;
-  background: url("ipom-website-biology-bg.png") center / cover;
+  background: url("../img/ipom-website-biology-bg.png") center / cover;
 }
 
 .biology-media,
@@ -1000,7 +1000,7 @@ body.welcome-open {
 .entities {
   position: absolute;
   inset: 0;
-  background: url("ipom-website-img-entity.gif") center / cover no-repeat;
+  background: url("../img/ipom-website-img-entity.gif") center / cover no-repeat;
 }
 
 
@@ -1010,7 +1010,7 @@ body.welcome-open {
 
 @font-face {
   font-family: "Portal Galactico";
-  src: url("portal-galactico.otf") format("opentype");
+  src: url("../fonts/portal-galactico.otf") format("opentype");
   font-display: block;
 }
 
@@ -1083,9 +1083,9 @@ body.welcome-open {
 @font-face {
   font-family: "Portal Glyph";
   src:
-    url("portal-glyph.woff2") format("woff2"),
-    url("portal-glyph.woff") format("woff"),
-    url("portal-glyph.ttf") format("truetype");
+    url("../fonts/portal-glyph.woff2") format("woff2"),
+    url("../fonts/portal-glyph.woff") format("woff"),
+    url("../fonts/portal-glyph.ttf") format("truetype");
   font-display: block;
 }
 
@@ -1149,8 +1149,8 @@ body.welcome-open {
   min-height: 0;
   aspect-ratio: 1041.38 / 1080;
   background-color: var(--color-glyph);
-  -webkit-mask: url("ipom-img-balezeglyph.svg") center / contain no-repeat;
-  mask: url("ipom-img-balezeglyph.svg") center / contain no-repeat;
+  -webkit-mask: url("../img/ipom-img-balezeglyph.svg") center / contain no-repeat;
+  mask: url("../img/ipom-img-balezeglyph.svg") center / contain no-repeat;
   transition: background-color 1.8s ease;
 }
 

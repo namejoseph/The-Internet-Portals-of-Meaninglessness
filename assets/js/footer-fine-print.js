@@ -22,7 +22,7 @@
   const makeGlyph = (n) => {
     const img = document.createElement('img');
     img.className = 'fine-print-glyph';
-    img.src = `ipom-img-footerfineprint-c${n}.svg`;
+    img.src = `assets/img/ipom-img-footerfineprint-c${n}.svg`;
     img.alt = '';
     return img;
   };
